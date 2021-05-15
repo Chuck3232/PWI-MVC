@@ -1,0 +1,73 @@
+html
+    head
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700")
+        link(rel="stylesheet" href="/css/main.css")
+        title Karol Pikora - PWI
+    body
+        .home.pwi-app(data-lightbox=showLightbox)
+            header.app-header
+                .logo
+                    img.logo__icon(src="/img/home-icon.png")
+                    span.logo__text Nightcity for dogs
+                nav.app-nav
+                    ul.app-nav__list
+                        li.app-nav__list-item
+                            a.app-nav__link.app-nav__link--is-active(href="#") home
+                        li.app-nav__list-item
+                            a.app-nav__link(href="#") adopt a dog
+                        li.app-nav__list-item
+                            a.app-nav__link(href="#")  contact
+            .wrapper
+                section.slogan
+                    h1.slogan__header
+                        | Be a samurai. Adopt a dog.
+                    p.slogan__text
+                        | Do you know how many dogs are homeless? All of them need care and attention, and all of them want to live in a big and warm superblok. You could save their life. Be a samurai.
+                    .actions
+                        button.btn.btn--primary(@click="formLightbox = true") Adopt a dog
+                        
+                footer.app-footer
+                    | Karol Pikora PWI
+            .lightbox(v-show="formLightbox == true" style="display: none;")
+                .lightbox__content
+                    hh2.lightbox__header Adopt a dog, samurai!
+                    form.lightbox__form(action="/applications" method="POST")
+                        .lightbox__form-control
+                            label.lightbox__label How old are you?
+                            input.lightbox__input(placeholder="18" type="text" name="age" value=validated ? validated.age : '')
+                            if (errors && errors.age)
+                                p.lightbox__error #{ errors.age.msg }
+                        .lightbox__form-control
+                           label.lightbox__label What is your height?
+                            input.lightbox__input(placeholder="180" type="text" name="height" value=validated ? validated.height : '')
+                            if (errors && errors.height)
+                                p.lightbox__error #{ errors.height.msg }
+                        .lightbox__form-control
+                            label.lightbox__label How much you weigh?
+                            input.lightbox__input(placeholder="60" type="text" name="weight" value=validated ? validated.weight : '')
+                            if (errors && errors.weight)
+                                p.lightbox__error #{ errors.weight.msg }
+                        .lightbox__form-control
+                            label.lightbox__label Do you play sports?
+                            input.lightbox__radio(type="radio" name="sport" value='1')
+                            label.lightbox__radio YES
+                            input.lightbox__radio(type="radio" name="sport" value='0' checked="checked")
+                            label.lightbox__radio NO
+                        .lightbox__form-control
+                            label.lightbox__label Did have dog before?
+                            input.lightbox__radio(type="radio" name="dog" value='1')
+                            label.lightbox__radio YES
+                            input.lightbox__radio(type="radio" name="dog" value='0' checked="checked")
+                            label.lightbox__radio NO
+                        .lightbox__actions
+                            button.btn.btn--primary Adopt a dog
+
+            if (formMessage && formMessage.length)
+                .lightbox(v-show="showFeedback")
+                    .lightbox__content
+                        h2.lightbox__header #{ formMessage }
+                        .lightbox__actions.lightbox__actions--centered
+                            button.btn.btn--primary(@click="closeFeedbackLightbox") Close
+
+        script(src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript")
+        script(src="/js/app.js")
