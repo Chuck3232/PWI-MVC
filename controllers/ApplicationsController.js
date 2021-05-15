@@ -18,25 +18,25 @@ exports.countPoints = (req, res, next) => {
     next();
 };
 
-exports.validate = [
-    check('age').isLength({ min: 1 }).withMessage('Age is required.'),
-    check('height').isLength({ min: 1 }).withMessage('Height is required.'),
-    check('weight').isLength({ min: 1 }).withMessage('Weigh is required.')
-];
+// exports.validate = [
+//     check('age').isLength({ min: 1 }).withMessage('Age is required.'),
+//     check('height').isLength({ min: 1 }).withMessage('Height is required.'),
+//     check('weight').isLength({ min: 1 }).withMessage('Weigh is required.')
+// ];
 
-exports.checkValidation = (req, res, next) => {
-    const errors = validationResult(req);
+// exports.checkValidation = (req, res, next) => {
+//     const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        return res.render('home', {
-            validated: req.body,
-            errors: errors.mapped(),
-            showLightbox: 'true'
-        });
-    }
+//     if (!errors.isEmpty()) {
+//         return res.render('home', {
+//             validated: req.body,
+//             errors: errors.mapped(),
+//             showLightbox: 'true'
+//         });
+//     }
 
-    next();
-};
+//     next();
+// };
 
 exports.findDog = (req, res, next) => {
 
