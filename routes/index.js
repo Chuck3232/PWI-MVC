@@ -7,8 +7,8 @@ const ApplicationsController = require('../controllers/ApplicationsController');
 router.get('/', PagesController.home);
 
 router.post('/applications',
-    // ApplicationsController.validate,
-    // ApplicationsController.checkValidation,
+    //ApplicationsController.validate,
+    //ApplicationsController.checkValidation,
     ApplicationsController.countPoints,
     ApplicationsController.findDog,
     ApplicationsController.adopt
